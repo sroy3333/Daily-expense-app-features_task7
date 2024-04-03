@@ -35,7 +35,9 @@
     axios.post('http://localhost:5000/expense/addexpense', expenseDetails)
         .then((response) => {
                 addNewExpensetoUI(response.data.expense);
-        }).catch(err => console.log(err))
+                resetFormFields(e.target);
+        })
+        .catch(err => console.log(err))
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -76,6 +78,10 @@ function deleteexpense(e, expenseid) {
 function removeExpenseFromUI(expenseid) {
     const expenseElemId = `expense-${expenseid}`;
     document.getElementById(expenseElemId).remove();
+}
+
+function resetFormFields(form) {
+        form.reset();
 }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
